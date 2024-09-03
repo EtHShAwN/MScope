@@ -1,2 +1,2 @@
 MZ:
-    cc mz.c -Wall -p mz
+        cc mz.c --std=c99 -Wall -o mz.out
