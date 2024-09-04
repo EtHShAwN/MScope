@@ -31,6 +31,7 @@ void readMZHeader(FILE* fp, unsigned short buffer[]) {
 
 // Function to print the MZ header information
 void printMZHeaderInfo(unsigned short buffer[]) {
+    unsigned int combinedWord = (buffer[14]<<8) | buffer[15];
     printf("[info] %u Bytes in the Last Page\n", buffer[1]);
     printf("[info] Total Page: %u\n", buffer[2]);
     printf("[info] Initial Stack Segment: %04x\n", buffer[7]);
@@ -42,6 +43,9 @@ void printMZHeaderInfo(unsigned short buffer[]) {
     }
     if (buffer[14] == TLINKMagic) { // Check for Turbo Link magic
         printf("[linker] This Program is linked by Borland Turbo Link\n");
+    }
+    if (combinedWord == ARJMagic){
+        printf("[info] This File is an old ARJ self-extracting archive\n");
     }
 }
 
